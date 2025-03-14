@@ -9,17 +9,49 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+
+//libraries for json
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import ir.huri.jcal.JalaliCalendar;
+//class for news
+class News{
+    final private String title;
+    final private String description;
+    final private String sourceName;
+    final private String author;
+    final private String url;
+    final private String publishedAt;
 
+    //constructor
+    public News(String title , String description , String sourceName , String author , String url , String publishedAt)
+    {
+        this.title = title;
+        this.description = description;
+        this.sourceName = sourceName;
+        this.author = author;
+        this.url = url;
+        this.publishedAt = publishedAt;
+    }
 
-import AP.News;
+    //Method for show News information
+    public void displayNews()
+    {
+        System.out.println("title : " + title);
+        System.out.println("Description : "+ description);
+        System.out.println("Source Name : "+sourceName);
+        System.out.println("Author : "+ author);
+        System.out.println("Url : "+ url);
+        System.out.println("Published At : " + publishedAt);
+
+    }
+
+    public String getTitle() {
+        return title;
+    }
+}
 
 public class Infrastructure {
 
@@ -29,6 +61,7 @@ public class Infrastructure {
     private ArrayList<News> newsList;
 
 
+    //constructor
     public Infrastructure(String APIKEY) {
         this.APIKEY = APIKEY;
         this.URL = "https://newsapi.org/v2/everything?q=tesla&from=" + LocalDate.now().minusDays(1) +"&sortBy=publishedAt&apiKey=";
@@ -99,6 +132,7 @@ public class Infrastructure {
 
     }
 
+    //Method for show titles
     public void displayNewsList() {
         ArrayList<News> newsList = getNewsList();
 
